@@ -1,0 +1,48 @@
+name: Quality Assurance
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  schedule:
+    - cron: '0 2 * * 1' # Weekly on Monday at 2 AM
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    name: Security Check
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        extensions: dom, curl, libxml, mbstring, zip
+        
+    - name: Install dependencies
+      run: composer install --no-progress --prefer-dist --optimize-autoloader
+      
+    - name: Security check
+      run: composer audit
+      
+  dependency-check:
+    runs-on: ubuntu-latest
+    name: Dependency Analysis
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        
+    - name: Install dependencies
+      run: composer install --no-progress --prefer-dist --optimize-autoloader
+      
+    - name: Check for outdated dependencies
+      run: composer outdated --direct --strict
+      continue-on-error: true

@@ -10,13 +10,13 @@ A flexible PHP-based converter that transforms Markdown into TEI-XML with suppor
 
 ## Features
 
-- 🔄 **Markdown to TEI-XML conversion** with full TEI P5 compliance
-- 📝 **Extended conventions** (e.g., `[]` to `<supplied>`, `{}` to `<unclear>`)
-- 🔧 **Flexible configuration system** for custom rules and mappings
-- 🎯 **Configurable TEI metadata** (title, author, language, etc.)
-- 📚 **TEI P5 standard compliant** output with proper namespaces
-- ⚡ **High performance** processing of large documents
-- 🧪 **Fully tested** with comprehensive PHPUnit test suite
+- **Markdown to TEI-XML conversion** with full TEI P5 compliance
+- **Extended conventions** (e.g., `[]` to `<supplied>`, `{}` to `<unclear>`)
+- **Flexible configuration system** for custom rules and mappings
+- **Configurable TEI metadata** (title, author, language, etc.)
+- **TEI P5 standard compliant** output with proper namespaces
+- **High performance** processing of large documents
+- **Fully tested** with comprehensive PHPUnit test suite
 
 ## Installation
 
