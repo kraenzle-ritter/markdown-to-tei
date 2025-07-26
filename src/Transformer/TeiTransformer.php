@@ -25,14 +25,14 @@ class TeiTransformer
     /**
      * Transforms HTML to TEI-XML
      *
-     * @param string $html The HTML to transform
+     * @param  string $html The HTML to transform
      * @return string The resulting TEI-XML
      */
     public function transform(string $html): string
     {
         // Clean HTML for better DOM processing
         $html = $this->wrapHtmlForParsing($html);
-        
+
         // HTML-Dokument erstellen mit besserer Fehlerbehandlung
         $htmlDoc = new DOMDocument();
         libxml_use_internal_errors(true);
@@ -139,7 +139,7 @@ class TeiTransformer
     /**
      * Transforms an HTML node to a TEI node
      *
-     * @param DOMNode $node The node to transform
+     * @param  DOMNode $node The node to transform
      * @return DOMNode|null The transformed TEI node
      */
     private function transformNode(DOMNode $node): ?DOMNode
@@ -153,12 +153,12 @@ class TeiTransformer
         }
 
         $htmlTag = strtolower($node->nodeName);
-        
+
         // Special handling for already converted TEI elements
         if (in_array($htmlTag, ['supplied', 'unclear', 'del', 'add', 'note'])) {
             return $this->handleTeiElement($node);
         }
-        
+
         $teiMapping = $this->config->getMapping($htmlTag);
 
         if (!$teiMapping) {
@@ -186,7 +186,7 @@ class TeiTransformer
     /**
      * Creates a TEI element based on the mapping
      *
-     * @param string $mapping The element mapping (e.g. "head[@type='main']")
+     * @param  string $mapping The element mapping (e.g. "head[@type='main']")
      * @return DOMElement The created TEI element
      */
     private function createTeiElement(string $mapping): DOMElement
@@ -210,7 +210,7 @@ class TeiTransformer
     /**
      * Copies relevant attributes from HTML to TEI element
      *
-     * @param DOMNode $htmlNode The HTML node
+     * @param DOMNode    $htmlNode   The HTML node
      * @param DOMElement $teiElement The TEI element
      */
     private function copyRelevantAttributes(DOMNode $htmlNode, DOMElement $teiElement): void
@@ -233,11 +233,11 @@ class TeiTransformer
             }
         }
     }
-    
+
     /**
      * Prepares HTML for better DOM parsing
      *
-     * @param string $html The HTML
+     * @param  string $html The HTML
      * @return string The prepared HTML
      */
     private function wrapHtmlForParsing(string $html): string
@@ -246,28 +246,28 @@ class TeiTransformer
         $html = '<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body>' . $html . '</body></html>';
         return $html;
     }
-    
+
     /**
      * Handles already converted TEI elements
      *
-     * @param DOMNode $node The TEI node
+     * @param  DOMNode $node The TEI node
      * @return DOMElement The TEI element
      */
     private function handleTeiElement(DOMNode $node): DOMElement
     {
         $tagName = $node->nodeName;
         $element = $this->teiDoc->createElement($tagName);
-        
+
         // Copy attributes
         if ($node->hasAttributes()) {
             foreach ($node->attributes as $attribute) {
                 $element->setAttribute($attribute->name, $attribute->value);
             }
         }
-        
+
         // Copy text content
         $element->textContent = $node->textContent;
-        
+
         return $element;
     }
 }

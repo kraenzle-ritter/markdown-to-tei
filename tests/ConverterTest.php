@@ -23,7 +23,7 @@ class ConverterTest extends TestCase
     {
         $markdown = "# Test Title\n\nThis is **bold** and *italic* text.";
         $result = $this->converter->convert($markdown);
-        
+
         $this->assertStringContainsString('<TEI', $result);
         $this->assertStringContainsString('<head', $result);
         $this->assertStringContainsString('<hi rend="bold">bold</hi>', $result);
@@ -34,7 +34,7 @@ class ConverterTest extends TestCase
     {
         $markdown = "This text has [supplied content] in it.";
         $result = $this->converter->convert($markdown);
-        
+
         $this->assertStringContainsString('<supplied>supplied content</supplied>', $result);
     }
 
@@ -42,7 +42,7 @@ class ConverterTest extends TestCase
     {
         $markdown = "This text has {unclear content} in it.";
         $result = $this->converter->convert($markdown);
-        
+
         $this->assertStringContainsString('<unclear>unclear content</unclear>', $result);
     }
 
@@ -50,7 +50,7 @@ class ConverterTest extends TestCase
     {
         $markdown = "This text has (editorial note) in it.";
         $result = $this->converter->convert($markdown);
-        
+
         $this->assertStringContainsString('<note type="editorial">editorial note</note>', $result);
     }
 
@@ -58,7 +58,7 @@ class ConverterTest extends TestCase
     {
         $markdown = "This text has --deleted content-- in it.";
         $result = $this->converter->convert($markdown);
-        
+
         $this->assertStringContainsString('<del>deleted content</del>', $result);
     }
 
@@ -66,15 +66,16 @@ class ConverterTest extends TestCase
     {
         $markdown = "This text has ++added content++ in it.";
         $result = $this->converter->convert($markdown);
-        
+
         $this->assertStringContainsString('<add>added content</add>', $result);
     }
 
     public function testComplexMarkdown(): void
     {
-        $markdown = "# Main Title\n\n## Section\n\nText with [supplied] and {unclear} parts.\n\n- List item with **bold**\n- Another item\n\n> Blockquote text";
+        $markdown = "# Main Title\n\n## Section\n\nText with [supplied] and {unclear} parts.\n\n" .
+                   "- List item with **bold**\n- Another item\n\n> Blockquote text";
         $result = $this->converter->convert($markdown);
-        
+
         $this->assertStringContainsString('<TEI', $result);
         $this->assertStringContainsString('<supplied>supplied</supplied>', $result);
         $this->assertStringContainsString('<unclear>unclear</unclear>', $result);
@@ -86,10 +87,10 @@ class ConverterTest extends TestCase
     {
         $markdown = "# Test\n\nContent";
         $result = $this->converter->convert($markdown);
-        
+
         $dom = new \DOMDocument();
         $this->assertTrue($dom->loadXML($result), 'Generated TEI-XML should be well-formed');
-        
+
         $this->assertStringContainsString('<teiHeader>', $result);
         $this->assertStringContainsString('<fileDesc>', $result);
         $this->assertStringContainsString('<titleStmt>', $result);
@@ -101,10 +102,10 @@ class ConverterTest extends TestCase
     {
         $this->config->setTeiSetting('title', 'Custom Title');
         $this->config->setTeiSetting('author', 'Test Author');
-        
+
         $markdown = "# Test";
         $result = $this->converter->convert($markdown);
-        
+
         $this->assertStringContainsString('<title>Custom Title</title>', $result);
         $this->assertStringContainsString('<author>Test Author</author>', $result);
     }

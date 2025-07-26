@@ -44,5 +44,8 @@ jobs:
       run: composer install --no-progress --prefer-dist --optimize-autoloader
       
     - name: Check for outdated dependencies
-      run: composer outdated --direct --strict
-      continue-on-error: true
+      run: |
+        echo "Checking for outdated dependencies..."
+        composer outdated --direct --strict || echo "Some dependencies have updates available"
+        echo "Full outdated report:"
+        composer outdated --direct || true

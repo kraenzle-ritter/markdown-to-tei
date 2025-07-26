@@ -23,7 +23,7 @@ class ConventionProcessorTest extends TestCase
     {
         $input = "Text with [supplied content] here.";
         $result = $this->processor->preProcess($input);
-        
+
         // PreProcessing macht jetzt nichts mehr
         $this->assertEquals($input, $result);
     }
@@ -32,7 +32,7 @@ class ConventionProcessorTest extends TestCase
     {
         $input = "Text with {unclear content} here.";
         $result = $this->processor->preProcess($input);
-        
+
         // PreProcessing macht jetzt nichts mehr
         $this->assertEquals($input, $result);
     }
@@ -41,7 +41,7 @@ class ConventionProcessorTest extends TestCase
     {
         $input = "Text with (editorial note) here.";
         $result = $this->processor->preProcess($input);
-        
+
         // PreProcessing macht jetzt nichts mehr
         $this->assertEquals($input, $result);
     }
@@ -50,7 +50,7 @@ class ConventionProcessorTest extends TestCase
     {
         $input = "Text with --deleted content-- here.";
         $result = $this->processor->preProcess($input);
-        
+
         // PreProcessing macht jetzt nichts mehr
         $this->assertEquals($input, $result);
     }
@@ -59,7 +59,7 @@ class ConventionProcessorTest extends TestCase
     {
         $input = "Text with ++added content++ here.";
         $result = $this->processor->preProcess($input);
-        
+
         // PreProcessing macht jetzt nichts mehr
         $this->assertEquals($input, $result);
     }
@@ -68,7 +68,7 @@ class ConventionProcessorTest extends TestCase
     {
         $input = "Text with [supplied] and {unclear} and (note) content.";
         $result = $this->processor->preProcess($input);
-        
+
         // PreProcessing macht jetzt nichts mehr
         $this->assertEquals($input, $result);
     }
@@ -77,7 +77,7 @@ class ConventionProcessorTest extends TestCase
     {
         $input = '<TEI><text><body><p>Test content</p></body></text></TEI>';
         $result = $this->processor->postProcess($input);
-        
+
         // Should add namespace
         $this->assertStringContainsString('xmlns="http://www.tei-c.org/ns/1.0"', $result);
     }
@@ -85,11 +85,11 @@ class ConventionProcessorTest extends TestCase
     public function testAddCustomConvention(): void
     {
         $this->processor->addConvention('test', '/TEST/', '<test/>');
-        
+
         // Test im Post-Processing
         $input = "This is a <p>TEST</p>.";
         $result = $this->processor->postProcess($input);
-        
+
         $this->assertStringContainsString('<test/>', $result);
     }
 
@@ -97,7 +97,7 @@ class ConventionProcessorTest extends TestCase
     {
         $input = '<TEI>  <text>   <body>     <p>Test</p>   </body>  </text>  </TEI>';
         $result = $this->processor->postProcess($input);
-        
+
         $this->assertStringNotContainsString('  ', $result);
     }
 
@@ -105,7 +105,7 @@ class ConventionProcessorTest extends TestCase
     {
         $input = '<TEI><text><body><p>Text with [supplied content] here.</p></body></text></TEI>';
         $result = $this->processor->postProcess($input);
-        
+
         $this->assertStringContainsString('<supplied>supplied content</supplied>', $result);
     }
 
@@ -113,7 +113,7 @@ class ConventionProcessorTest extends TestCase
     {
         $input = '<TEI><text><body><p>Text with [supplied] and {unclear} content.</p></body></text></TEI>';
         $result = $this->processor->postProcess($input);
-        
+
         $this->assertStringContainsString('<supplied>supplied</supplied>', $result);
         $this->assertStringContainsString('<unclear>unclear</unclear>', $result);
     }

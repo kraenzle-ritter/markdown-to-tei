@@ -41,10 +41,6 @@ jobs:
     - name: Install dependencies
       run: composer install --no-progress --prefer-dist --optimize-autoloader
       
-    - name: Run code style check
-      run: composer run cs
-      continue-on-error: ${{ matrix.php-version == '8.3' }}
-      
     - name: Run tests
       run: composer run test
       
@@ -59,3 +55,22 @@ jobs:
         file: ./coverage.xml
         flags: unittests
         name: codecov-umbrella
+
+  code-style:
+    runs-on: ubuntu-latest
+    name: Code Style
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        extensions: dom, curl, libxml, mbstring, zip
+        
+    - name: Install dependencies
+      run: composer install --no-progress --prefer-dist --optimize-autoloader
+      
+    - name: Run code style check
+      run: composer run cs

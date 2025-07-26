@@ -30,10 +30,12 @@ class MarkdownParser
      */
     private function initializeConverter(): void
     {
-        $environment = new Environment([
+        $environment = new Environment(
+            [
             'html_input' => 'strip',
             'allow_unsafe_links' => false,
-        ]);
+            ]
+        );
 
         // Add core extensions
         $environment->addExtension(new CommonMarkCoreExtension());
@@ -46,7 +48,7 @@ class MarkdownParser
     /**
      * Parses Markdown text to HTML
      *
-     * @param string $markdown The Markdown text to parse
+     * @param  string $markdown The Markdown text to parse
      * @return string The resulting HTML
      */
     public function parse(string $markdown): string
@@ -57,20 +59,20 @@ class MarkdownParser
     /**
      * Cleans HTML output for better TEI conversion
      *
-     * @param string $html The HTML to clean
+     * @param  string $html The HTML to clean
      * @return string The cleaned HTML
      */
     public function cleanHtml(string $html): string
     {
         // Remove empty paragraphs
         $html = preg_replace('/<p>\s*<\/p>/', '', $html);
-        
+
         // Normalize whitespace
         $html = preg_replace('/\s+/', ' ', $html);
-        
+
         // Remove excessive whitespace at beginning and end
         $html = trim($html);
-        
+
         return $html;
     }
 }

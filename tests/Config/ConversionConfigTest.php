@@ -19,7 +19,7 @@ class ConversionConfigTest extends TestCase
     public function testDefaultConventions(): void
     {
         $conventions = $this->config->getConventions();
-        
+
         $this->assertArrayHasKey('supplied', $conventions);
         $this->assertArrayHasKey('unclear', $conventions);
         $this->assertArrayHasKey('editorial_note', $conventions);
@@ -29,12 +29,15 @@ class ConversionConfigTest extends TestCase
 
     public function testAddConvention(): void
     {
-        $this->config->addConvention('test', [
+        $this->config->addConvention(
+            'test',
+            [
             'pattern' => '/test/',
             'replacement' => '<test>$1</test>',
             'type' => 'regex'
-        ]);
-        
+            ]
+        );
+
         $conventions = $this->config->getConventions();
         $this->assertArrayHasKey('test', $conventions);
         $this->assertEquals('/test/', $conventions['test']['pattern']);
@@ -44,7 +47,7 @@ class ConversionConfigTest extends TestCase
     {
         $this->config->removeConvention('supplied');
         $conventions = $this->config->getConventions();
-        
+
         $this->assertArrayNotHasKey('supplied', $conventions);
     }
 
@@ -68,7 +71,7 @@ class ConversionConfigTest extends TestCase
         $this->config->addMapping('custom', 'customElement');
         $this->assertEquals('customElement', $this->config->getMapping('custom'));
         $this->assertNull($this->config->getMapping('nonexistent'));
-        
+
         $mappings = $this->config->getMappings();
         $this->assertArrayHasKey('custom', $mappings);
     }

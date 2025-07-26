@@ -30,31 +30,31 @@ class Converter
     /**
      * Converts Markdown text to TEI-XML
      *
-     * @param string $markdown The Markdown text to convert
+     * @param  string $markdown The Markdown text to convert
      * @return string The resulting TEI-XML
      */
     public function convert(string $markdown): string
     {
         // 1. Apply extended conventions before parsing
         $processedMarkdown = $this->conventionProcessor->preProcess($markdown);
-        
+
         // 2. Parse Markdown to HTML
         $html = $this->parser->parse($processedMarkdown);
-        
+
         // 3. Transform HTML to TEI-XML
         $teiXml = $this->transformer->transform($html);
-        
+
         // 4. Post-processing for additional conventions
         $finalTeiXml = $this->conventionProcessor->postProcess($teiXml);
-        
+
         return $finalTeiXml;
     }
 
     /**
      * Converts a Markdown file to TEI-XML
      *
-     * @param string $inputFile Path to the Markdown file
-     * @param string|null $outputFile Path to the output file (optional)
+     * @param  string      $inputFile  Path to the Markdown file
+     * @param  string|null $outputFile Path to the output file (optional)
      * @return string The resulting TEI-XML
      */
     public function convertFile(string $inputFile, ?string $outputFile = null): string
