@@ -2,6 +2,10 @@
 
 [![PHP Version](https://img.shields.io/badge/php-%3E%3D8.1-blue.svg)](https://php.net/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/kraenzle-ritter/markdown-to-tei/workflows/CI/badge.svg)](https://github.com/kraenzle-ritter/markdown-to-tei/actions)
+[![Quality Assurance](https://github.com/kraenzle-ritter/markdown-to-tei/workflows/Quality%20Assurance/badge.svg)](https://github.com/kraenzle-ritter/markdown-to-tei/actions)
+[![Downloads](https://img.shields.io/packagist/dt/kraenzle-ritter/markdown-to-tei)](https://packagist.org/packages/kraenzle-ritter/markdown-to-tei)
+[![Latest Version](https://img.shields.io/packagist/v/kraenzle-ritter/markdown-to-tei)](https://packagist.org/packages/kraenzle-ritter/markdown-to-tei)
 [![PHPUnit Tests](https://img.shields.io/badge/tests-27%20passing-brightgreen.svg)](#testing)
 [![TEI P5](https://img.shields.io/badge/TEI-P5%20compliant-orange.svg)](https://tei-c.org/)
 [![Composer](https://img.shields.io/badge/composer-ready-blue.svg)](https://getcomposer.org/)

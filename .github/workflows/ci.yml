@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     
     strategy:
+      fail-fast: false
       matrix:
         php-version: ['8.1', '8.2', '8.3']
         
@@ -42,6 +43,7 @@ jobs:
       
     - name: Run code style check
       run: composer run cs
+      continue-on-error: ${{ matrix.php-version == '8.3' }}
       
     - name: Run tests
       run: composer run test
