@@ -1,6 +1,6 @@
 # Markdown to TEI Converter - Project Overview
 
-## 🎯 What was created
+## What was created
 
 A flexible PHP project for converting Markdown to TEI-XML with extensible conventions.
 
@@ -25,7 +25,7 @@ markdown-to-tei/
 └── README.md                      # Documentation
 ```
 
-## ⚡ Core functionality
+## Core functionality
 
 ### 1. Standard Markdown conversion
 
@@ -54,7 +54,7 @@ markdown-to-tei/
 - **Metadata**: `<fileDesc>`, `<titleStmt>`, `<publicationStmt>`
 - **Namespaces**: Correct TEI namespaces
 
-## 🚀 Usage
+## Usage
 
 ### Basic example
 
@@ -88,21 +88,21 @@ $config->addConvention('page_break', [
 $config->addMapping('h1', 'head[@type="chapter"]');
 ```
 
-## 🧪 Quality assurance
+## Quality assurance
 
 - **27 PHPUnit tests** with 100% success rate
 - **Automatic code standards** with PHP_CodeSniffer
 - **Well-formed XML** is guaranteed
 - **TEI namespace** correctly implemented
 
-## 📋 Available examples
+## Available examples
 
 1. **`example.php`**: Basic functionality
 2. **`examples/advanced_config.php`**: Advanced configuration
 3. **`examples/file_conversion.php`**: File-based conversion
 4. **`examples/manuscript_edition.php`**: Critical edition with special conventions
 
-## 🔧 Technical details
+## Technical details
 
 ### Dependencies
 
@@ -118,7 +118,7 @@ $config->addMapping('h1', 'head[@type="chapter"]');
 - **Extensible**: New conventions easily added
 - **Testable**: Complete unit test coverage
 
-## ✅ Advantages
+## Advantages
 
 1. **Flexibility**: Adaptable to various projects and standards
 2. **Reliability**: Comprehensively tested and robustly implemented
