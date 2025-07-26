@@ -1,5 +1,5 @@
 {
-    "name": "ak/markdown-to-tei",
+    "name": "kraenzle-ritter/markdown-to-tei",
     "description": "Flexible Markdown to TEI XML converter with customizable conventions",
     "type": "library",
     "keywords": ["markdown", "tei", "xml", "converter", "digital-humanities"],
