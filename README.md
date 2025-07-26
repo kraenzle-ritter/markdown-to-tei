@@ -25,6 +25,14 @@ A flexible PHP-based converter that transforms Markdown into TEI-XML with suppor
 ## Installation
 
 ```bash
+composer require kraenzle-ritter/markdown-to-tei
+```
+
+For development:
+
+```bash
+git clone https://github.com/kraenzle-ritter/markdown-to-tei.git
+cd markdown-to-tei
 composer install
 ```
 
