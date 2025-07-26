@@ -4,7 +4,7 @@
 
 A flexible PHP project for converting Markdown to TEI-XML with extensible conventions.
 
-## 📁 Project structure
+## Project structure
 
 ```
 markdown-to-tei/
