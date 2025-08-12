@@ -36,7 +36,7 @@ class ConversionConfig
                 'type' => 'regex'
             ],
             'editorial_note' => [
-                'pattern' => '/\(([^)]+)\)/',
+                'pattern' => '/\(\(\s*([^\)]+?)\s*\)\)/',
                 'replacement' => '<note type="editorial">$1</note>',
                 'type' => 'regex'
             ],

@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Extended conventions support:
   - `[supplied text]` → `<supplied>supplied text</supplied>`
   - `{unclear text}` → `<unclear>unclear text</unclear>`
-  - `(editorial note)` → `<note type="editorial">editorial note</note>`
+  - `(( editorial_note ))` → `<note type="editorial">editorial note</note>`
   - `--deleted text--` → `<del>deleted text</del>`
   - `++added text++` → `<add>added text</add>`
 - Flexible configuration system (`ConversionConfig`)

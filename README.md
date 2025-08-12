@@ -71,7 +71,7 @@ This is a <supplied>supplied text</supplied> in the document.
 ### Additional Conventions
 
 - `{unclear text}` → `<unclear>unclear text</unclear>`
-- `(editorial note)` → `<note type="editorial">editorial note</note>`
+- `(( editorial_note ))` → `<note type="editorial">editorial note</note>`
 - `--deleted--` → `<del>deleted</del>`
 - `++added++` → `<add>added</add>`
 
