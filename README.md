@@ -56,24 +56,30 @@ echo $teiXml;
 
 ## Extended Conventions
 
-### Supplied Text
 
-```markdown
-This is a [supplied text] in the document.
-```
+### Overview of Conventions and Mappings
 
-becomes:
+| Markdown/HTML                      | TEI-XML Conversion                                   |
+|------------------------------------|------------------------------------------------------|
+| `[supplied text]`                  | `<supplied>supplied text</supplied>`                  |
+| `{unclear text}`                   | `<unclear>unclear text</unclear>`                     |
+| `(( editorial_note ))`             | `<note type="editorial">editorial note</note>`       |
+| `--deleted--`                      | `<del>deleted</del>`                                  |
+| `++added++`                        | `<add>added</add>`                                    |
+| `[text](url)`                      | `<ref target="url">text</ref>`                      |
+| `<h1>Heading</h1>`                 | `<head type="chapter">Heading</head>`               |
+| `<h2>Heading</h2>`                 | `<head type="section">Heading</head>`               |
+| `<li>Item</li>`                    | `<item>Item</item>`                                  |
+| `<ul>...</ul>`                     | `<list>...</list>`                                   |
+| `<ol>...</ol>`                     | `<list type="ordered">...</list>`                   |
+| `<blockquote>Quote</blockquote>`   | `<quote>Quote</quote>`                                |
+| `<em>text</em>` / `*text*`         | `<hi rend="italic">text</hi>`                       |
+| `<strong>text</strong>` / `**text**` | `<hi rend="bold">text</hi>`                      |
+| `<code>code</code>` / `` `code` `` | `<code>code</code>`                                  |
+| `<hr>` / `---`                     | `<milestone/>`                                       |
+| <code>\|p.123\|</code>           | `<pb n="123"/>`                                     |
 
-```xml
-This is a <supplied>supplied text</supplied> in the document.
-```
-
-### Additional Conventions
-
-- `{unclear text}` → `<unclear>unclear text</unclear>`
-- `(( editorial_note ))` → `<note type="editorial">editorial note</note>`
-- `--deleted--` → `<del>deleted</del>`
-- `++added++` → `<add>added</add>`
+This table shows the most important standard conventions and HTML-to-TEI mappings. You can add your own rules via configuration.
 
 ## Advanced Configuration
 
