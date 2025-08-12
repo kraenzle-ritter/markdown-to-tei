@@ -26,8 +26,8 @@ class ConverterTest extends TestCase
 
         $this->assertStringContainsString('<TEI', $result);
         $this->assertStringContainsString('<head', $result);
-        $this->assertStringContainsString('<hi rend="bold">bold</hi>', $result);
-        $this->assertStringContainsString('<hi rend="italic">italic</hi>', $result);
+    $this->assertStringContainsString('<hi rend="bold">bold</hi>', $result);
+    $this->assertStringContainsString('<hi rend="italic">italic</hi>', $result);
     }
 
     public function testSuppliedTextConvention(): void
@@ -48,10 +48,10 @@ class ConverterTest extends TestCase
 
     public function testEditorialNoteConvention(): void
     {
-        $markdown = "This text has (editorial note) in it.";
+        $markdown = "This text has (( editorial note )) in it.";
         $result = $this->converter->convert($markdown);
 
-        $this->assertStringContainsString('<note type="editorial">editorial note</note>', $result);
+    $this->assertStringContainsString('<note type="editorial">editorial note</note>', $result);
     }
 
     public function testDeletionConvention(): void
@@ -108,5 +108,13 @@ class ConverterTest extends TestCase
 
         $this->assertStringContainsString('<title>Custom Title</title>', $result);
         $this->assertStringContainsString('<author>Test Author</author>', $result);
+    }
+
+    public function testLinkConversion(): void
+    {
+        $markdown = "Hier ist ein [Linktext](https://example.com).";
+        $result = $this->converter->convert($markdown);
+
+    $this->assertStringContainsString('<ref target="https://example.com">Linktext</ref>', $result);
     }
 }

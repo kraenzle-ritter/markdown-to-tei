@@ -219,9 +219,16 @@ class TeiTransformer
             return;
         }
 
+        $tagName = strtolower($htmlNode->nodeName);
         foreach ($htmlNode->attributes as $attribute) {
+            /** @var \DOMAttr $attribute */
             $name = $attribute->name;
             $value = $attribute->value;
+
+            if ($tagName === 'a' && $name === 'href') {
+                $teiElement->setAttribute('target', $value);
+                continue;
+            }
 
             // Only copy certain attributes
             if (in_array($name, ['id', 'class', 'lang'])) {
@@ -261,6 +268,7 @@ class TeiTransformer
         // Copy attributes
         if ($node->hasAttributes()) {
             foreach ($node->attributes as $attribute) {
+                /** @var \DOMAttr $attribute */
                 $element->setAttribute($attribute->name, $attribute->value);
             }
         }

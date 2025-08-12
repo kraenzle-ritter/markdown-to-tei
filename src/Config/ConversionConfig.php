@@ -77,7 +77,8 @@ class ConversionConfig
             'li' => 'item',
             'blockquote' => 'quote',
             'code' => 'code',
-            'pre' => 'ab[@type="code"]'
+            'pre' => 'ab[@type="code"]',
+            'a' => 'ref'
         ];
     }
 
